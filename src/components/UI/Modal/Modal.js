@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './Modal.module.css'
 import Aux from '../../../hoc/Aux'
-import Backdrop from '../Backdrop/Backdrop'
+import {Backdrop} from '../../../components'
 
 const modal = (props) => {
     let toggleModalClasses;
