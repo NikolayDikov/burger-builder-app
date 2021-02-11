@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 import Aux from '../../hoc/Aux';
-import { Burger, BurgerControls } from '../../components'
+import _ from 'lodash';
+import { Burger, BurgerControls, Modal, OrderSummery } from '../../components'
 
 const INGREDIENTS_PRICES = {
     salad: 0.5,
@@ -19,7 +20,27 @@ class BurgerBuilder extends Component {
             cheese: 0,
             meat: 0
         },
-        burgerPrice: 4
+        burgerPrice: 4,
+        purchaseable: false,
+        orderNow: false
+    }
+
+    updateOrderNow = () => {
+        this.setState({orderNow: true});
+    }
+
+    cancelOrder = () => {
+        this.setState({orderNow: false});
+    }
+
+    continueOrder = () => {
+        alert('YOU CONTINUE!');
+    }
+    
+    updatePurchaseState (ingredients) {
+        const sum = _.sum(_.valuesIn(ingredients));
+
+        this.setState({purchaseable: sum > 0});
     }
 
     addIngredient = (type) => {
@@ -29,9 +50,10 @@ class BurgerBuilder extends Component {
 
         const oldPrice = this.state.burgerPrice;
         let updatedPrice = oldPrice + INGREDIENTS_PRICES[type];
-        updatedPrice = Math.round(updatedPrice * 100)/100
+        updatedPrice = _.round(updatedPrice, 2);
 
         this.setState({ingredients: updatedIngredients, burgerPrice: updatedPrice});
+        this.updatePurchaseState(updatedIngredients);
     }
 
     removeIngredient = (type) => {
@@ -42,9 +64,10 @@ class BurgerBuilder extends Component {
     
             const oldPrice = this.state.burgerPrice;
             let updatedPrice = oldPrice - INGREDIENTS_PRICES[type];
-            updatedPrice = Math.round(updatedPrice * 100)/100
+            updatedPrice = _.round(updatedPrice, 2);
     
             this.setState({ingredients: updatedIngredients, burgerPrice: updatedPrice});
+            this.updatePurchaseState(updatedIngredients);
         };
     }
 
@@ -53,14 +76,25 @@ class BurgerBuilder extends Component {
         for (const key in disabledInfo) {
             disabledInfo[key] = disabledInfo[key] <= 0;
         }
+
         return (
             <Aux>
+                <Modal show={this.state.orderNow} modalClosed={this.cancelOrder}>
+                    <OrderSummery 
+                        ingredients={this.state.ingredients} 
+                        price={this.state.burgerPrice}
+                        cancel={this.cancelOrder}
+                        continue={this.continueOrder}
+                    />
+                </Modal>
                 <Burger ingredients={this.state.ingredients}/>
                 <BurgerControls 
                     ingredientAdded={this.addIngredient}
                     ingredientRemoved={this.removeIngredient}
                     disabled={disabledInfo}
                     price={this.state.burgerPrice}
+                    purchaseable={this.state.purchaseable}
+                    ordered={this.updateOrderNow}
                 />
             </Aux>
         );
