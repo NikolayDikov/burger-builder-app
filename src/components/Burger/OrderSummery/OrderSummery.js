@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Aux from '../../../hoc/Aux'
 import styles from './OrderSummery.module.css'
 import { Button } from '../../../components'
 
-const orderSummery = ( props ) => {
+const OrderSummery = ( props ) => {
+
+    useEffect(() => {
+        console.log('OrderUpdate');
+    }, [props.showOrder]);
+
     const ingredientSummery = Object.keys(props.ingredients)
         .map((igKey) => {
             return (
                 <li key={igKey}><span className={styles.ingredients}>{igKey}</span>: {props.ingredients[igKey]}</li>
             );
         });
+    
     return (
         <Aux>
             <h3>Your Order</h3>
@@ -26,4 +32,4 @@ const orderSummery = ( props ) => {
     );
 };
 
-export default orderSummery
+export default OrderSummery

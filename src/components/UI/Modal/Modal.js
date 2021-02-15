@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import styles from './Modal.module.css'
 import Aux from '../../../hoc/Aux'
 import {Backdrop} from '../../../components'
 
-const modal = (props) => {
+const Modal = (props) => {
+
+    useEffect(() => {
+        console.log('Modal Render');
+    }, [props.show]);
+
     let toggleModalClasses;
     props.show ? toggleModalClasses = `${styles.Modal} ${styles.modalToggle}` : toggleModalClasses = `${styles.Modal}`;
 
@@ -18,4 +23,4 @@ const modal = (props) => {
     )
 };
 
-export default modal;
+export default Modal;
