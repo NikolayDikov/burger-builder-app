@@ -10,6 +10,8 @@ import NavItems from './Navigation/NavItems/NavItems';
 import SideDrawer from './Navigation/SideDrawer/SideDrawer';
 import Backdrop from './UI/Backdrop/Backdrop';
 import DrawerToggle from './Navigation/SideDrawer/DrawerToggle/DrawerToggle';
+import Spinner from './UI/Spinner/Spinner';
+import CheckoutSummery from './Order/CheckoutSummery/CheckoutSummery';
 
 export {
     Layout,
@@ -23,5 +25,7 @@ export {
     NavItems,
     SideDrawer,
     Backdrop,
-    DrawerToggle
+    DrawerToggle,
+    Spinner,
+    CheckoutSummery
 }

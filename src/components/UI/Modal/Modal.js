@@ -7,7 +7,7 @@ import {Backdrop} from '../../../components'
 const Modal = (props) => {
 
     useEffect(() => {
-        console.log('Modal Render');
+        // console.log('Modal Render');
     }, [props.show]);
 
     let toggleModalClasses;

@@ -7,7 +7,7 @@ import { Button } from '../../../components'
 const OrderSummery = ( props ) => {
 
     useEffect(() => {
-        console.log('OrderUpdate');
+        // console.log('OrderUpdate');
     }, [props.showOrder]);
 
     const ingredientSummery = Object.keys(props.ingredients)
