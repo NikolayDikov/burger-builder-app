@@ -1,0 +1,28 @@
+.inputContainer {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.inputLabel {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+.inputEl {
+    outline: none;
+    border: 1px solid #ccc;
+    background-color: white;
+    font: inherit;
+    padding: 6px 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+.inputEl:focus {
+    outline: none;
+    background-color: #ccc;
+}
+.invalid {
+    border: 1px solid red;
+    background-color: rgb(252, 166, 157);
+}

@@ -12,6 +12,8 @@ import Backdrop from './UI/Backdrop/Backdrop';
 import DrawerToggle from './Navigation/SideDrawer/DrawerToggle/DrawerToggle';
 import Spinner from './UI/Spinner/Spinner';
 import CheckoutSummery from './Order/CheckoutSummery/CheckoutSummery';
+import Order from './Order/Order';
+import Input from './UI/Input/Input'
 
 export {
     Layout,
@@ -27,5 +29,7 @@ export {
     Backdrop,
     DrawerToggle,
     Spinner,
-    CheckoutSummery
+    CheckoutSummery,
+    Order,
+    Input
 }
