@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { Button, Spinner, Input } from '../../../components';
 import styles from './ContactData.module.css';
@@ -105,8 +106,8 @@ class ContactData extends Component {
         }
 
         const order = {
-            ingredients: this.props.ingredients,
-            price: this.props.totalPrice,
+            ingredients: this.props.ings,
+            price: this.props.price.toFixed(2),
             orderData: formData
         }
 
@@ -155,7 +156,7 @@ class ContactData extends Component {
         for (const key in updatedOrderForm) {
             formIsValid = updatedOrderForm[key].valid && formIsValid;
         }
-        console.log(formIsValid);
+        // console.log(formIsValid);
         this.setState({orderForm: updatedOrderForm, formIsValid: formIsValid});
     }
 
@@ -199,4 +200,11 @@ class ContactData extends Component {
     }
 }
 
-export default ContactData;
+const mapStateToProps = state => {
+    return {
+        ings: state.ingredients,
+        price: state.burgerPrice
+    }
+}
+
+export default connect(mapStateToProps)(ContactData);
